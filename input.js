@@ -1,31 +1,23 @@
-// Stores the active TCP connection object.
+const { movementMessageKeys } = require("./constants");
+
+// stores the active TCP connection object
 let connection;
 
-// setup interface to handle user input from stdin
-const handleUserInput = function(key) {
-  if (key === "\u0003") {
+// trigger an action when a specific key is pressed
+const handleUserInput = function(keyPressed) {
+  // if ctrl + c is pressed, exit the program
+  if (keyPressed === "\u0003") {
     process.exit();
   }
-  if (key === "w") {
-    connection.write("Move: up");
-  }
-  if (key === "a") {
-    connection.write("Move: left");
-  }
-  if (key === "s") {
-    connection.write("Move: down");
-  }
-  if (key === "d") {
-    connection.write("Move: right");
-  }
-  if (key === "g") {
-    connection.write("Say: Good Game!");
-  }
-  if (key === "o") {
-    connection.write("Say: Oops!");
+  // search for the keyPressed in the keys of the movementMessageKeys object and if a match is found, write the value to the server
+  for (const objKey of Object.keys(movementMessageKeys)) {
+    if (keyPressed === objKey) {
+      connection.write(movementMessageKeys[objKey]);
+    }
   }
 };
 
+// setup interface to handle user input from stdin
 const setupInput = function(conn) {
   connection = conn;
   const stdin = process.stdin;
