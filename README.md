@@ -8,8 +8,8 @@ Before you can run this client, you will need to be running the server side whic
 
 ## Final Product
 
-!["start of game"](images/screenshot-start.png)
-!["game underway"](images/screenshot-mid.png)
+![Start of game](assets/images/screenshot-start.png)
+![Game underway](assets/images/screenshot-mid.png)
 
 
 ## Getting Started
